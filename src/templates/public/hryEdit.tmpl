@@ -1,0 +1,16 @@
+{% from "macros/fields.tmpl" import render_input_field,render_checkbox_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}Forgotten password{% endblock %}
+
+{% block content %}
+  <h3>Formulař hry</h3>
+  <div class="form-group">Napiš nazev hry a rok vydaní</div>
+  <form method="POST" id='insert-form'>
+      {{ form.hidden_tag() }}
+      {{ render_input_field(form.nazev) }}
+      {{ render_input_field(form.rok) }}
+      {{ render_submit() }}
+  </form>
+  <button type="button">Click Me!</button>
+{% endblock %}
