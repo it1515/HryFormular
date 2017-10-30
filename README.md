@@ -1,0 +1,2 @@
+# HryFormular
+HryFormular - upraveny SmazatFormular
