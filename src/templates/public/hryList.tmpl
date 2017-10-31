@@ -5,8 +5,8 @@
 
 {% block content %}
   <h3>List her</h3>
-  <div class="form-group">Kliknete na Upravit pro upravu nebo Smazat pro smazani</div>
  <table style="width:100%">
+ <tr><td>Název</td><td>Rok</td><td>Uprav</td><td>Smaž</td></tr>
     {% for n in pole %}
         <tr><td>{{ n.nazev  }}</td>
         <td>{{ n.rok }}</td>

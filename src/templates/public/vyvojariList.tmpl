@@ -1,0 +1,18 @@
+{% from "macros/fields.tmpl" import render_input_field, render_submit %}
+{% extends "shared/layout.tmpl" %}
+
+{% block title %}List vyvojařů{% endblock %}
+
+{% block content %}
+  <h3>List vyvojařů</h3>
+ <table style="width:100%">
+ <tr><td>Název</td><td>Pocet titulu</td><td>Uprav</td><td>Smaž</td></tr>
+    {% for n in pole %}
+        <tr><td>{{ n.vyvojar  }}</td>
+        <td>{{ n.pocetTitulu }}</td>
+        <td><a href="/upravVyvojare/{{ n.id }}"><button class="btn-sm btn-info"> Upravit</button></a></td>
+        <td><a href="/smazVyvojare/{{ n.id }}"><button class="btn-sm btn-info">Smazat</button></a></td></tr>
+    {% endfor %}
+ </table>
+
+{% endblock %}

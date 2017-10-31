@@ -2,9 +2,9 @@
 Logic for dashboard related routes
 """
 from flask import Blueprint, render_template,redirect,url_for,flash
-from .forms import LogUserForm, secti,masoform,TestForm,HryForm
+from .forms import LogUserForm, secti,masoform,TestForm,HryForm,VyvojarForm
 from ..data.database import db
-from ..data.models import LogUser,Emaily,Hry
+from ..data.models import LogUser,Emaily,Hry,Vyvojari
 blueprint = Blueprint('public', __name__)
 
 @blueprint.route('/', methods=['GET'])
@@ -84,3 +84,32 @@ def FormularHryEdit(id):
         Hry.create(**form.data)
         return redirect(url_for('public.FormularHryList'))
     return render_template("public/hryForm.tmpl", action="Edit", form=form)
+
+@blueprint.route('/vyvojari', methods=['GET','POST'])
+def FormularVyvojari():
+    form = VyvojarForm()
+    if form.validate_on_submit():
+        Vyvojari.create(**form.data)
+        flash("Ulozeno",category="INFO")
+    return render_template('public/vyvojarForm.tmpl', form=form)
+
+@blueprint.route('/vyvojariList', methods=['GET'])
+def FormularVyvojariList():
+    pole = db.session.query(Vyvojari).all()
+    return render_template('public/vyvojariList.tmpl', pole=pole)
+
+@blueprint.route('/smazVyvojare/<id>', methods=['GET'])
+def FormularVyvojariDel(id):
+    vyvojar = db.session.query(Vyvojari).filter_by(id=id).first()
+    Hry.delete(vyvojar)
+    return redirect(url_for('public.FormularVyvojariList'))
+
+@blueprint.route('/upravVyvojare/<id>', methods=['GET','POST'])
+def FormularVyvojariEdit(id):
+    vyvojar = db.session.query(Vyvojari).filter_by(id=id).first()
+    form=VyvojarForm(obj=vyvojar)
+    if form.validate_on_submit():
+        Vyvojari.delete(vyvojar)
+        Vyvojari.create(**form.data)
+        return redirect(url_for('public.FormularVyvojariList'))
+    return render_template("public/vyvojarForm.tmpl", action="Edit", form=form)

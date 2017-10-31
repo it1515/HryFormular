@@ -5,7 +5,6 @@
 
 {% block content %}
   <h3>Formulař her</h3>
-  <div class="form-group">Napiš nazev hry a rok vydaní</div>
   <form method="POST" id='insert-form'>
       {{ form.hidden_tag() }}
       {{ render_input_field(form.nazev) }}

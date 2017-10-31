@@ -93,5 +93,26 @@ class HryForm(Form):
         InputRequired(message="Musite zadat rok")
     ])
 
+from ..data.models import Vyvojari
+def vyvojari_exists(vyvojari):
+    prom=Vyvojari.find_by_vyvojari(vyvojari)
+    if prom is None:
+        return True
+    return False
+
+class VyvojarForm(Form):
+
+    vyvojar = TextField('Zadej vyvojare', validators=[
+        Predicate(nazev_exists, message="Nazev existuje"),
+        Predicate(safe_characters, message="Please use only letters (a-z) and numbers"),
+        Length(min=3, max=30, message="Zadej mezi 3 a 30 znaky"),
+        InputRequired(message="Musite zadat nazev")
+    ])
+
+    pocetTitulu = IntegerField("Zadej pocet titulu", validators=[
+        NumberRange(min=0, message=None),
+        InputRequired(message="Musite zadat pocet titulu")
+    ])
+
 
 

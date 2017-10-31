@@ -17,6 +17,8 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{{ url_for('public.FormularHry') }}">Přidat Hru</a></li>
         <li><a href="{{ url_for('public.FormularHryList') }}">List Her</a></li>
+        <li><a href="{{ url_for('public.FormularVyvojari') }}">Přidat Vyvojaře</a></li>
+        <li><a href="{{ url_for('public.FormularVyvojariList') }}">List Vyvojařů</a></li>
         {% if current_user.is_anonymous() %}
           <li><a href="{{ url_for('auth.login') }}">Login</a></li>
           <li><a href="{{ url_for('auth.register') }}">Sign up</a></li>
