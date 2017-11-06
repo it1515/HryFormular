@@ -4,11 +4,13 @@ from sqlalchemy.types import Boolean, Integer, String
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 
+
 from ..database import db
 from ..mixins import CRUDModel
 from ..util import generate_random_token
 from ...settings import app_config
 from ...extensions import bcrypt
+
 
 class Hry(CRUDModel, UserMixin):
     __tablename__ = 'hry'
@@ -16,7 +18,8 @@ class Hry(CRUDModel, UserMixin):
     id = Column(Integer, primary_key=True)
     nazev = Column(String(64), nullable=False, unique=True, index=True, doc="Nazev hry")
     rok = Column(Integer, nullable=False, index=False, doc="Rok vydani")
-    #vyvojar_id = Column(Integer, ForeignKey('vyvojar.id'))
+    vyvojar_id = Column(Integer, ForeignKey('vyvojari.id'))
+
 
     # Use custom constructor
     # pylint: disable=W0231

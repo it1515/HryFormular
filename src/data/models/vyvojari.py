@@ -1,6 +1,8 @@
 from flask_login import UserMixin
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Boolean, Integer, String
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship, backref
 
 from ..database import db
 from ..mixins import CRUDModel
@@ -14,6 +16,7 @@ class Vyvojari(CRUDModel, UserMixin):
     id = Column(Integer, primary_key=True)
     vyvojar = Column(String(64), nullable=False, unique=True, index=True, doc="Nazev vyvojare")
     pocetTitulu = Column(Integer, nullable=False, index=False, doc="Pocet titulu")
+    hry = relationship("Hry")
 
     # Use custom constructor
     # pylint: disable=W0231

@@ -4,5 +4,5 @@ from .loguzivatele import LogUser
 from .test import LogUser1
 from .maso import Maso
 from .emaily import Emaily
-from .hry import Hry
 from .vyvojari import Vyvojari
+from .hry import Hry
